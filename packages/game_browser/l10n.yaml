@@ -1,0 +1,6 @@
+arb-dir: lib/src/l10n
+template-arb-file: game_browser_en.arb
+output-localization-file: game_browser_localizations.dart
+synthetic-package: false
+output-dir: ./lib/src/l10n/generated
+output-class: GameBrowserLocalizations
