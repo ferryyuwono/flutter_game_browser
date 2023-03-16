@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
 
 import '../../data.dart';
 
 enum RestMethod { get, post, put, patch, delete }
 
-@LazySingleton()
 class RestApiClient {
   final String baseUrl;
   final List<Interceptor> interceptors;
@@ -40,7 +38,7 @@ class RestApiClient {
     int sendTimeoutInMs = 30000,
     int receiveTimeoutInMs = 30000,
   }) async {
-    final response = await _requestByMethod<T>(
+    final response = await _requestByMethod(
       method: method,
       path: path.startsWith(baseUrl) ? path.substring(baseUrl.length) : path,
       queryParameters: queryParameters,
@@ -57,7 +55,7 @@ class RestApiClient {
     return responseMapper.map(response.data);
   }
 
-  Future<Response<T>> _requestByMethod<T>({
+  Future<Response> _requestByMethod({
     required RestMethod method,
     required String path,
     Map<String, dynamic>? queryParameters,
@@ -67,34 +65,34 @@ class RestApiClient {
   }) {
     switch (method) {
       case RestMethod.get:
-        return dio.get<T>(
+        return dio.get(
           path,
           queryParameters: queryParameters,
           options: options,
         );
       case RestMethod.post:
-        return dio.post<T>(
+        return dio.post(
           path,
           data: body,
           queryParameters: queryParameters,
           options: options,
         );
       case RestMethod.patch:
-        return dio.patch<T>(
+        return dio.patch(
           path,
           data: body,
           queryParameters: queryParameters,
           options: options,
         );
       case RestMethod.put:
-        return dio.put<T>(
+        return dio.put(
           path,
           data: body,
           queryParameters: queryParameters,
           options: options,
         );
       case RestMethod.delete:
-        return dio.delete<T>(
+        return dio.delete(
           path,
           data: body,
           queryParameters: queryParameters,

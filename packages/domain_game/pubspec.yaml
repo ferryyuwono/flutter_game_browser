@@ -16,9 +16,10 @@ dependencies:
   json_annotation: ^4.8.0
   injectable: ^2.1.0
   get_it: ^7.2.0
+  intl: ^0.17.0
 
 dev_dependencies:
-  injectable_generator:
+  injectable_generator: ^2.1.3
   build_runner:
   flutter_test:
     sdk: flutter

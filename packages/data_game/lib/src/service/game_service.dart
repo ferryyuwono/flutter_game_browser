@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton()
 class GameService {
-  final RestApiClient _apiClient;
+  final RawgApiClient _apiClient;
   final PagedListGameDataMapper _pagedListGameDataMapper;
 
   GameService(
