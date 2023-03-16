@@ -1,0 +1,27 @@
+name: domain_game
+description: Domain module of game
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  common:
+    path: ../common
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.8.0
+  injectable: ^2.1.0
+  get_it: ^7.2.0
+
+dev_dependencies:
+  injectable_generator:
+  build_runner:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  freezed: ^2.3.2
+  json_serializable: ^6.6.1
