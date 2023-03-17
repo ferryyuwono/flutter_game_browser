@@ -54,7 +54,6 @@ void main() {
         page: 1,
         isSuccess: true,
         isLastPage: true,
-        nextUrl: '',
       );
       expect(result, expected);
     });

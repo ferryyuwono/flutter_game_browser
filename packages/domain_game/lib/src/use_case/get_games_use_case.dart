@@ -24,7 +24,6 @@ class GetGamesUseCase {
         page: input.page,
         isSuccess: true,
         isLastPage: pagedList.nextUrl.isEmpty,
-        nextUrl: pagedList.nextUrl
       );
     } catch (e) {
       output = GetGamesOutput(

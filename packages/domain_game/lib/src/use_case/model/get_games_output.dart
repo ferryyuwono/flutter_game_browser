@@ -12,6 +12,5 @@ class GetGamesOutput with _$GetGamesOutput {
     @Default(0) int page,
     @Default(false) bool isSuccess,
     @Default(false) bool isLastPage,
-    @Default('') String nextUrl,
   }) = _GetGamesOutput;
 }

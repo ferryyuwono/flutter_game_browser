@@ -1,5 +1,6 @@
 import 'package:data/data.dart';
 import 'package:data_game/data_game.dart';
+import 'package:data_game/src/service/mapper/game_detail_data_mapper.dart';
 import 'package:data_game/src/service/mapper/paged_list_game_data_mapper.dart';
 import 'package:domain_game/domain_game.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,11 +13,13 @@ void main() {
     late GameService gameService;
     final restApiClient = MockRestApiClient();
     final pagedListGameDataMapper = PagedListGameDataMapper();
+    final gameDetailDataMapper = GameDetailDataMapper();
 
     setUp(() {
       gameService = GameService(
         restApiClient,
         pagedListGameDataMapper,
+        gameDetailDataMapper,
       );
     });
 
@@ -56,6 +59,30 @@ void main() {
         (_) => Future.value(response),
       );
       final result = await gameService.getGames(
+        request: request
+      );
+
+      // Then
+      expect(result, response);
+    });
+    test('when getGameDetail is called, should return data', () async {
+      // Given
+      const response = GameDetailData();
+      const request = GetGameDetailRequest(
+        id: 437049
+      );
+
+      // When
+      when(
+        () => restApiClient.request<GameDetailData>(
+          method: RestMethod.get,
+          path: 'games/${request.id}',
+          responseMapper: gameDetailDataMapper,
+        ),
+      ).thenAnswer(
+        (_) => Future.value(response),
+      );
+      final result = await gameService.getGameDetail(
         request: request
       );
 

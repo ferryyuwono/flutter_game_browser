@@ -8,7 +8,7 @@ void main() {
 
     setUp(() {});
 
-    test('when map GetGamesInitialized, should return GetGamesRequest with parameter', () async {
+    test('when map GetGamesInput, should return GetGamesRequest with parameter', () async {
       // Given
       final endDate = DateTime(2023, 3, 16);
       final startDate = DateTime(2022, 3, 16);

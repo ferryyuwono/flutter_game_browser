@@ -1,6 +1,7 @@
 import 'package:data/data.dart';
 import 'package:data_game/data_game.dart';
 import 'package:data_game/src/repository/game_repository_impl.dart';
+import 'package:data_game/src/repository/mapper/game_detail_mapper.dart';
 import 'package:data_game/src/repository/mapper/paged_list_game_mapper.dart';
 import 'package:domain_game/domain_game.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,11 +14,13 @@ void main() {
     late GameRepositoryImpl gameRepository;
     final gameService = MockGameService();
     final pagedListGameMapper = PagedListGameMapper();
+    final gameDetailMapper = GameDetailMapper();
 
     setUp(() {
       gameRepository = GameRepositoryImpl(
         gameService,
         pagedListGameMapper,
+        gameDetailMapper,
       );
     });
 

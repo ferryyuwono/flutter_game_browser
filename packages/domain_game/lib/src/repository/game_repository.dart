@@ -4,4 +4,7 @@ abstract class GameRepository {
   Future<PagedList<Game>> getGames({
     required GetGamesRequest request
   });
+  Future<GameDetail> getGameDetail({
+    required GetGameDetailRequest request
+  });
 }
