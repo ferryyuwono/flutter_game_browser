@@ -11,7 +11,10 @@ import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  static const String screenKey = 'screen.home';
+  static const String gameListKey = 'screen.home.list.game';
+
+  const HomePage() : super(key: const Key(HomePage.screenKey));
 
   @override
   State<StatefulWidget> createState() {
@@ -68,12 +71,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildList(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
-      listenWhen: (previous, current) => previous.games.data != current.games.data,
+      listenWhen: (previous, current) => previous.games.data != current.games.data && current.games.page > 0 && current.games.isSuccess,
       listener: (context, state) {
-        if (state.games.page == 0 || !state.games.isSuccess) {
-          return;
-        }
-
         if (state.games.isLastPage) {
           _pagingController.appendLastPage(state.games.data);
           return;
@@ -93,6 +92,7 @@ class _HomePageState extends State<HomePage> {
           child: state.isShimmerLoading && state.games.data.isEmpty
               ? const _LoadingGameListView()
               : PagedListView<int, Game>(
+            key: const Key(HomePage.gameListKey),
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<Game>(
               itemBuilder: (context, item, index) => _GameItem(
@@ -220,15 +220,45 @@ class _LoadingGameItem extends StatelessWidget {
         horizontal: 8,
         vertical: 4,
       ),
-      child: Container(
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: const SizedBox(height: 100),
-      )
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 150,
+            height: 90,
+            color: Colors.white,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 16,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    width: 100,
+                    height: 16,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const SizedBox()
+          ),
+        ],
+      ),
     );
   }
 }
@@ -244,7 +274,7 @@ class _LoadingGameListView extends StatelessWidget {
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
         child: ListView.builder(
-          itemCount: 5,
+          itemCount: 10,
           itemBuilder: (context, index) => const _LoadingGameItem(),
         ),
     );

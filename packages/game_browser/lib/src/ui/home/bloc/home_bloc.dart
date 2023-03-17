@@ -5,11 +5,15 @@ import 'package:game_browser/game_browser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable()
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+abstract class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  HomeBloc(super.initialState);
+}
+
+@Injectable(as: HomeBloc)
+class HomeBlocImpl extends HomeBloc {
   final GetGamesUseCase _getGamesUseCase;
 
-  HomeBloc(this._getGamesUseCase) : super(HomeState()) {
+  HomeBlocImpl(this._getGamesUseCase) : super(HomeState()) {
     on<HomeGetGameEvent>(
       _onHomeGetGame,
     );

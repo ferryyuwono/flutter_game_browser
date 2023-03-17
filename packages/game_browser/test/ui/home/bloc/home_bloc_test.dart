@@ -7,8 +7,8 @@ import 'package:mocktail/mocktail.dart';
 class MockGetGamesUseCase extends Mock implements GetGamesUseCase {}
 
 void main() {
-  group('HomeBloc', () {
-    late HomeBloc bloc;
+  group('HomeBlocImpl', () {
+    late HomeBlocImpl bloc;
     final getGamesUseCase = MockGetGamesUseCase();
     const getGamesResult = GetGamesOutput(
       data: [],
@@ -21,7 +21,7 @@ void main() {
     final endDate = DateTime(2023, 3, 16);
 
     setUp(() {
-      bloc = HomeBloc(getGamesUseCase);
+      bloc = HomeBlocImpl(getGamesUseCase);
     });
 
     test('when created, should has correct initialState', () {

@@ -9,6 +9,9 @@ command:
     usePubspecOverrides: true
 
 scripts:
+  run_app:
+    run: melos exec
+
   generate_l10n:
     run: melos exec --dir-exists="lib/src/l10n" -- flutter gen-l10n .
     description: Generate localizations in all packages
