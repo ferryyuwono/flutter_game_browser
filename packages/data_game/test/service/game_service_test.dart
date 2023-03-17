@@ -5,7 +5,7 @@ import 'package:domain_game/domain_game.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockRestApiClient extends Mock implements RestApiClient {}
+class MockRestApiClient extends Mock implements RawgApiClient {}
 
 void main() {
   group('GameService', () {
@@ -28,11 +28,12 @@ void main() {
         previous: null,
         results: [],
       );
-      final parameter = GetGamesParameter(
+      const parameter = GetGamesParameter(
+        page: 1,
         startDate: '2022-03-16',
         endDate: '2023-03-16'
       );
-      final request = GetGamesRequest(
+      const request = GetGamesRequest(
         parameter: parameter
       );
 

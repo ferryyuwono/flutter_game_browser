@@ -1,0 +1,25 @@
+name: initializer
+description: Dependency Injection initializer module
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  data:
+    path: ../data
+  common:
+    path: ../common
+  domain_game:
+    path: ../domain_game
+  data_game:
+    path: ../data_game
+
+dev_dependencies:
+  build_runner:
+  flutter_test:
+    sdk: flutter

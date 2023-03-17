@@ -25,7 +25,6 @@ dependencies:
   rxdart: ^0.27.7
 
 dev_dependencies:
-  injectable_generator:
   build_runner:
   flutter_test:
     sdk: flutter
@@ -33,3 +32,4 @@ dev_dependencies:
   freezed: ^2.3.2
   json_serializable: ^6.6.1
   mocktail: ^0.3.0
+  injectable_generator: ^2.1.3
