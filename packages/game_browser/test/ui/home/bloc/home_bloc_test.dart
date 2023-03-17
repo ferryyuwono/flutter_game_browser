@@ -14,7 +14,6 @@ void main() {
       data: [],
       page: 1,
       isSuccess: true,
-      nextUrl: '',
       isLastPage: true
     );
     final startDate = DateTime(2022, 3, 16);

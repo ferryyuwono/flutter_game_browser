@@ -50,7 +50,6 @@ class MockHomeBloc extends HomeBloc {
         isSuccess: true,
         isLastPage: false,
         page: event.page,
-        nextUrl: '',
       );
     } else {
       output = GetGamesOutput(
@@ -80,7 +79,6 @@ class MockHomeBloc extends HomeBloc {
         isSuccess: true,
         isLastPage: true,
         page: event.page,
-        nextUrl: '',
       );
     }
 
