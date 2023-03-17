@@ -23,7 +23,7 @@ void main() {
 
     test('when getGames is called, should return data', () async {
       // Given
-      final request = GetGamesRequest(
+      const request = GetGamesRequest(
         parameter: GetGamesParameter(
           startDate: '2022-03-16',
           endDate: '2023-03-16'

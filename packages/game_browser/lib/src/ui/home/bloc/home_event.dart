@@ -8,11 +8,15 @@ abstract class HomeEvent extends BaseBlocEvent {
 }
 
 @freezed
-class HomePageInitiated extends HomeEvent with _$HomePageInitiated {
-  const factory HomePageInitiated() = _HomePageInitiated;
+class HomeGameRefreshedEvent extends HomeEvent with _$HomeGameRefreshedEvent {
+  const factory HomeGameRefreshedEvent() = _HomeGameRefreshedEvent;
 }
 
 @freezed
-class HomeGetGames extends HomeEvent with _$HomeGetGames {
-  const factory HomeGetGames() = _HomeGetGames;
+class HomeGetGameEvent extends HomeEvent with _$HomeGetGameEvent {
+  const factory HomeGetGameEvent({
+    required int page,
+    required DateTime startDate,
+    required DateTime endDate,
+  }) = _HomeGetGameEvent;
 }

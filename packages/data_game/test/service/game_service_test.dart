@@ -29,6 +29,7 @@ void main() {
         results: [],
       );
       const parameter = GetGamesParameter(
+        page: 1,
         startDate: '2022-03-16',
         endDate: '2023-03-16'
       );

@@ -1,17 +1,12 @@
-abstract class GetGamesInput {
-  GetGamesInput();
-}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class GetGamesInitialized extends GetGamesInput {
-  final DateTime startDate;
-  final DateTime endDate;
+part 'get_games_input.freezed.dart';
 
-  GetGamesInitialized({
-    required this.startDate,
-    required this.endDate,
-  });
-}
-
-class GetGamesLoadMore extends GetGamesInput {
-  GetGamesLoadMore();
+@freezed
+class GetGamesInput with _$GetGamesInput {
+  const factory GetGamesInput({
+    required int page,
+    required DateTime startDate,
+    required DateTime endDate,
+  }) = _GetGamesInput;
 }

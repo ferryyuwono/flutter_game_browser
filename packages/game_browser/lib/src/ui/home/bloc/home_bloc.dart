@@ -10,32 +10,28 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetGamesUseCase _getGamesUseCase;
 
   HomeBloc(this._getGamesUseCase) : super(HomeState()) {
-    on<HomePageInitiated>(
-      _onHomePageInitiated,
+    on<HomeGetGameEvent>(
+      _onHomeGetGame,
     );
 
-    on<HomeGetGames>(
-      _onUserLoadMore,
+    on<HomeGameRefreshedEvent>(
+      _onHomePageRefreshed,
     );
   }
 
-  FutureOr<void> _onHomePageInitiated(HomePageInitiated event, Emitter<HomeState> emit) async {
-    final endDate = DateTime.now();
-    final startDate = DateTime(endDate.year - 1, endDate.month, endDate.day);
+  FutureOr<void> _onHomeGetGame(HomeGetGameEvent event, Emitter<HomeState> emit) async {
     await _getGames(
       emit: emit,
-      request: GetGamesInitialized(
-        startDate: startDate,
-        endDate: endDate
+      request: GetGamesInput(
+        page: event.page,
+        startDate: event.startDate,
+        endDate: event.endDate,
       ),
     );
   }
 
-  FutureOr<void> _onUserLoadMore(HomeGetGames event, Emitter<HomeState> emit) async {
-    await _getGames(
-      emit: emit,
-      request: GetGamesLoadMore(),
-    );
+  FutureOr<void> _onHomePageRefreshed(HomeGameRefreshedEvent event, Emitter<HomeState> emit) async {
+    emit(state.copyWith(games: const GetGamesOutput(data: [])));
   }
 
   Future<void> _getGames({
@@ -43,14 +39,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required GetGamesInput request,
   }) async {
     try {
+      emit(state.copyWith(isShimmerLoading: true));
       final output = await _getGamesUseCase.execute(request);
-      emit(state.copyWith(games: output));
+      emit(state.copyWith(
+        games: output,
+        isShimmerLoading: false,
+      ));
     } catch(e) {
       emit(
         state.copyWith(
           games: state.games.copyWith(
             isSuccess: false
-          )
+          ),
+          isShimmerLoading: false,
         )
       );
     }

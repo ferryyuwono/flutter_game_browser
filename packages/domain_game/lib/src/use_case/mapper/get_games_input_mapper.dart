@@ -8,21 +8,13 @@ class GetGamesInputMapper {
 
   GetGamesInputMapper();
 
-  GetGamesRequest map(GetGamesInput data, String url) {
-    if (data is GetGamesInitialized) {
-      return GetGamesRequest(
-        url: url.isNotEmpty ? url : null,
-        parameter: GetGamesParameter(
-          startDate: dateFormat.format(data.startDate),
-          endDate: dateFormat.format(data.endDate),
-        )
-      );
-    } else if (data is GetGamesLoadMore) {
-      return GetGamesRequest(
-        url: url.isNotEmpty ? url : null
-      );
-    }
-
-    return const GetGamesRequest();
+  GetGamesRequest map(GetGamesInput data) {
+    return GetGamesRequest(
+      parameter: GetGamesParameter(
+        page: data.page,
+        startDate: dateFormat.format(data.startDate),
+        endDate: dateFormat.format(data.endDate),
+      )
+    );
   }
 }

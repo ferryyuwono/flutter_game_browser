@@ -7,13 +7,6 @@ class GetGamesUseCase {
   final GameRepository _repository;
   final GetGamesInputMapper _inputMapper;
 
-  GetGamesOutput _result = const GetGamesOutput(
-    data: [],
-    isSuccess: true,
-    isLastPage: false,
-    nextUrl: '',
-  );
-
   GetGamesUseCase(
     this._repository,
     this._inputMapper,
@@ -23,21 +16,22 @@ class GetGamesUseCase {
     GetGamesOutput output;
     try {
       final pagedList = await _repository.getGames(
-        request: _inputMapper.map(input, _result.nextUrl),
+        request: _inputMapper.map(input),
       );
 
-      output = _result.copyWith(
-        data: [..._result.data, ...pagedList.data],
+      output = GetGamesOutput(
+        data: pagedList.data,
+        page: input.page,
         isSuccess: true,
         isLastPage: pagedList.nextUrl.isEmpty,
         nextUrl: pagedList.nextUrl
       );
-      _result = output;
     } catch (e) {
-      output = _result.copyWith(
+      output = GetGamesOutput(
+        data: [],
+        page: input.page,
         isSuccess: false,
       );
-      _result = output;
     }
 
     return output;
