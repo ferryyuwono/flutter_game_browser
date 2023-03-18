@@ -10,6 +10,7 @@ class GameDetail with _$GameDetail {
     required DateTime released,
     @Default('') String backgroundImage,
     @Default(0) int metacritic,
+    @Default(0) int reviewsCount,
     @Default('') String description,
     @Default([]) List<Genre> genres,
     @Default([]) List<PlatformRequirement> platforms,
@@ -22,6 +23,7 @@ class GameDetail with _$GameDetail {
 class GetGameDetailRequest with _$GetGameDetailRequest {
   const factory GetGameDetailRequest({
     required int id,
+    @Default('612dae8efd17443ba8004890223aec1d') String key,
   }) = _GetGameDetailRequest;
 }
 

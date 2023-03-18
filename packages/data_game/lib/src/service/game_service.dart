@@ -42,6 +42,9 @@ class GameService {
       method: RestMethod.get,
       path: 'games/${request.id}',
       responseMapper: _gameDetailDataMapper,
+      queryParameters: {
+        'key': request.key,
+      },
     );
   }
 }

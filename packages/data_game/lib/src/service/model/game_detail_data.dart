@@ -13,6 +13,7 @@ class GameDetailData with _$GameDetailData {
     @JsonKey(name: 'released') String? released,
     @JsonKey(name: 'background_image') String? backgroundImage,
     @JsonKey(name: 'metacritic') int? metacritic,
+    @JsonKey(name: 'reviews_count') int? reviewsCount,
     @JsonKey(name: 'description_raw') String? description,
     @JsonKey(name: 'genres') List<GenreData>? genres,
     @JsonKey(name: 'platforms') List<PlatformRequirementData>? platforms,

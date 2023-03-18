@@ -3,5 +3,5 @@ Feature: Home
         Given Home page is shown
 
     Scenario: Show Games List
-        When Home receives game list
+        When Home page receives game list
         Then User sees list of game
