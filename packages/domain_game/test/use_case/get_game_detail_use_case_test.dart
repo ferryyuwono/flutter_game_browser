@@ -41,6 +41,30 @@ void main() {
       );
       expect(result, expected);
     });
+    test('when execute has exception, should return failed data', () async {
+      // Given
+      const id = 437049;
+      const request = GetGameDetailRequest(
+          id: id
+      );
+
+      // When
+      when(() => repository.getGameDetail(request: request))
+        .thenThrow(Exception('mock'));
+
+      final result = await getGameDetailUseCase.execute(
+        const GetGameDetailInput(
+          id: id
+        )
+      );
+
+      // Then
+      final expected = GetGameDetailOutput(
+        data: GameDetail(released: DateTime(0)),
+        isSuccess: false,
+      );
+      expect(result, expected);
+    });
 
     tearDown(() {});
   });

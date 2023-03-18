@@ -9,6 +9,8 @@ import 'package:shimmer/shimmer.dart';
 class GameDetailPage extends StatefulWidget {
   final int gameId;
   static const String screenKey = 'screen.game.detail';
+  static const String headerNoImageKey = 'screen.game.detail.header.no_image';
+  static const String bodyLoadingKey = 'screen.game.detail.body.loading';
   static const String bodyDescriptionKey = 'screen.game.detail.body.description';
 
   const GameDetailPage(this.gameId) : super(
@@ -43,7 +45,7 @@ class _GameDetailPageState extends State<GameDetailPage> {
             SliverOverlapAbsorber(
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               sliver: BlocBuilder<GameDetailBloc, GameDetailState>(
-              buildWhen: (previous, current) => previous.gameDetail.data.backgroundImage != previous.gameDetail.data.backgroundImage ||
+              buildWhen: (previous, current) => previous.gameDetail.data.backgroundImage != current.gameDetail.data.backgroundImage ||
                   previous.isShimmerLoading != current.isShimmerLoading,
               builder: (context, state) => SliverAppBar(
                 backgroundColor: Colors.black,
@@ -89,7 +91,7 @@ class _GameDetailPageState extends State<GameDetailPage> {
               ),
               SliverToBoxAdapter(
                 child: BlocBuilder<GameDetailBloc, GameDetailState>(
-                  buildWhen: (previous, current) => previous.gameDetail.data != previous.gameDetail.data ||
+                  buildWhen: (previous, current) => previous.gameDetail.data != current.gameDetail.data ||
                       previous.isShimmerLoading != current.isShimmerLoading,
                   builder: (context, state) => state.isShimmerLoading ?
                   const _LoadingBody() :
@@ -106,9 +108,7 @@ class _GameDetailPageState extends State<GameDetailPage> {
 }
 
 class _LoadingBackgroundImage extends StatelessWidget {
-  const _LoadingBackgroundImage({
-    Key? key,
-  }) : super(key: key);
+  const _LoadingBackgroundImage() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -124,9 +124,7 @@ class _LoadingBackgroundImage extends StatelessWidget {
 }
 
 class _LoadingBody extends StatelessWidget {
-  const _LoadingBody({
-    Key? key,
-  }) : super(key: key);
+  const _LoadingBody() : super(key: const Key(GameDetailPage.bodyLoadingKey));
 
   @override
   Widget build(BuildContext context) {
@@ -174,6 +172,7 @@ class _BackgroundImage extends StatelessWidget {
       ),
     ) :
     Container(
+      key: const Key(GameDetailPage.headerNoImageKey),
       height: 200,
       color: Colors.white,
       child: const Center(child: Text("No Image")),

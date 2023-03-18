@@ -20,7 +20,9 @@ class _GameBrowserAppState extends State<GameBrowserApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
+      routerDelegate: _appRouter.delegate(
+        initialRoutes: [ const HomeRoute() ]
+      ),
       routeInformationParser: _appRouter.defaultRouteParser()
     );
   }

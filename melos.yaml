@@ -44,7 +44,7 @@ scripts:
   coverage: melos run combine_coverage &&
     genhtml coverage_report/lcov.info -o coverage_report/html
 
-  build: melos run analyze &&  melos run generate_coverage
+  build: melos run analyze && melos run generate_coverage
 
   postclean: >
     melos exec -- \

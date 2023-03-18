@@ -12,10 +12,13 @@ class PagedListData<T> {
   PagedListData({
     @JsonKey(name: 'count') this.count,
     @JsonKey(name: 'next') this.next,
-    @JsonKey(name: 'next') this.previous,
+    @JsonKey(name: 'previous') this.previous,
     @JsonKey(name: 'results') this.results,
   });
 
   factory PagedListData.fromJson(Map<String, dynamic> json, T Function(dynamic) fromJsonT) =>
-      _$PagedListDataFromJson(json, fromJsonT);
+    _$PagedListDataFromJson(json, fromJsonT);
+
+  Map<String, dynamic> toJson(dynamic Function(T) toJsonT) =>
+    _$PagedListDataToJson(this, toJsonT);
 }

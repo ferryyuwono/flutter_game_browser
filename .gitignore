@@ -1,8 +1,9 @@
 **/pubspec_overrides.yaml
 .idea
-/.fvm/
+.fvm/flutter_sdk
 .dart_tool/
 **/lcov.info
+**/new_lcov.info
 **/*.config.dart
 **/*.freezed.dart
 **/*.g.dart

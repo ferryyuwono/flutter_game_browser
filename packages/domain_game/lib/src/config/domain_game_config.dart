@@ -12,7 +12,8 @@ class DomainGameConfig extends Config {
   static final DomainGameConfig _instance = DomainGameConfig._();
 
   @override
-  Future<void> config() async {
+  Future<bool> config() async {
     await di.configureInjection();
+    return Future.value(true);
   }
 }

@@ -13,7 +13,8 @@ import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
   static const String screenKey = 'screen.home';
-  static const String gameListKey = 'screen.home.list.game';
+  static const String bodyLoadingKey = 'screen.home.body.loading';
+  static const String bodyListGameKey = 'screen.home.body.list.game';
 
   const HomePage() : super(key: const Key(HomePage.screenKey));
 
@@ -93,10 +94,11 @@ class _HomePageState extends State<HomePage> {
           child: state.isShimmerLoading && state.games.data.isEmpty
               ? const _LoadingGameListView()
               : PagedListView<int, Game>(
-            key: const Key(HomePage.gameListKey),
+            key: const Key(HomePage.bodyListGameKey),
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<Game>(
               itemBuilder: (context, item, index) => _GameItem(
+                key: Key('${HomePage.bodyListGameKey}.$index'),
                 game: item,
               ),
             ),
@@ -194,9 +196,7 @@ class _GameItem extends StatelessWidget {
 }
 
 class _LoadingGameItem extends StatelessWidget {
-  const _LoadingGameItem({
-    Key? key,
-  }) : super(key: key);
+  const _LoadingGameItem() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -248,9 +248,7 @@ class _LoadingGameItem extends StatelessWidget {
 }
 
 class _LoadingGameListView extends StatelessWidget {
-  const _LoadingGameListView({
-    Key? key,
-  }) : super(key: key);
+  const _LoadingGameListView() : super(key: const Key(HomePage.bodyLoadingKey));
 
   @override
   Widget build(BuildContext context) {

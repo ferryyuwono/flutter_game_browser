@@ -14,7 +14,7 @@ void main() {
       data: [],
       page: 1,
       isSuccess: true,
-      isLastPage: true
+      isLastPage: true,
     );
     final startDate = DateTime(2022, 3, 16);
     final endDate = DateTime(2023, 3, 16);
@@ -51,6 +51,16 @@ void main() {
       expect: () => <HomeState>[
         HomeState(isShimmerLoading: true),
         HomeState(games: getGamesResult, isShimmerLoading: false),
+      ],
+    );
+    blocTest<HomeBloc, HomeState>(
+      'when input HomeGetGameRefresh, should return get games result',
+      build: () => bloc,
+      act: (bloc) {
+        bloc.add(const HomeGameRefreshedEvent());
+      },
+      expect: () => <HomeState>[
+        HomeState(),
       ],
     );
 

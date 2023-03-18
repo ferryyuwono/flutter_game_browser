@@ -42,22 +42,11 @@ class HomeBlocImpl extends HomeBloc {
     required Emitter<HomeState> emit,
     required GetGamesInput request,
   }) async {
-    try {
-      emit(state.copyWith(isShimmerLoading: true));
-      final output = await _getGamesUseCase.execute(request);
-      emit(state.copyWith(
-        games: output,
-        isShimmerLoading: false,
-      ));
-    } catch(e) {
-      emit(
-        state.copyWith(
-          games: state.games.copyWith(
-            isSuccess: false
-          ),
-          isShimmerLoading: false,
-        )
-      );
-    }
+    emit(state.copyWith(isShimmerLoading: true));
+    final output = await _getGamesUseCase.execute(request);
+    emit(state.copyWith(
+      games: output,
+      isShimmerLoading: false,
+    ));
   }
 }
