@@ -78,6 +78,9 @@ void main() {
           method: RestMethod.get,
           path: 'games/${request.id}',
           responseMapper: gameDetailDataMapper,
+          queryParameters: {
+            'key': request.key,
+          },
         ),
       ).thenAnswer(
         (_) => Future.value(response),

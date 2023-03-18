@@ -12,7 +12,8 @@ class DataGameConfig extends Config {
   static final DataGameConfig _instance = DataGameConfig._();
 
   @override
-  Future<void> config() async {
+  Future<bool> config() async {
     await di.configureInjection();
+    return Future.value(true);
   }
 }

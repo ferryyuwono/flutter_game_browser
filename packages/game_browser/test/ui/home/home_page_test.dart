@@ -5,17 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import './step/home_page_is_shown.dart';
-import './step/home_page_receives_game_list.dart';
+import './step/home_page_receives_data.dart';
 import './step/user_sees_list_of_game.dart';
 
 void main() {
   group('''Home''', () {
-    Future<void> bddSetUp(WidgetTester tester) async {
+    testWidgets('''Show Game List''', (tester) async {
       await homePageIsShown(tester);
-    }
-    testWidgets('''Show Games List''', (tester) async {
-      await bddSetUp(tester);
-      await homePageReceivesGameList(tester);
+      await homePageReceivesData(tester);
       await userSeesListOfGame(tester);
     });
   });

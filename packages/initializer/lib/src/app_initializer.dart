@@ -9,11 +9,13 @@ class AppInitializer {
   AppInitializer(this._applicationConfig);
 
   final ApplicationConfig _applicationConfig;
+  bool isInitialized = false;
 
-  Future<void> init() async {
+  Future<bool> init() async {
     await DataConfig.getInstance().init();
     await DataGameConfig.getInstance().init();
     await DomainGameConfig.getInstance().init();
     await _applicationConfig.init();
+    return Future.value(true);
   }
 }

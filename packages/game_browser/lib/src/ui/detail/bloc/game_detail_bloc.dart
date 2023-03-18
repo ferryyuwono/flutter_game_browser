@@ -19,19 +19,15 @@ class GameDetailBlocImpl extends GameDetailBloc {
     ))
   ) {
     on<GameDetailInitializedEvent>(
-      (event, emit) => _onGetGameDetail(event.id, emit),
-    );
-
-    on<GameDetailGameRefreshedEvent>(
-      (event, emit) => _onGetGameDetail(event.id, emit),
+      _onGetGameDetail,
     );
   }
 
-  FutureOr<void> _onGetGameDetail(int gameId, Emitter<GameDetailState> emit) async {
+  FutureOr<void> _onGetGameDetail(GameDetailInitializedEvent event, Emitter<GameDetailState> emit) async {
     await _getGameDetail(
       emit: emit,
       request: GetGameDetailInput(
-        id: gameId,
+        id: event.id,
       ),
     );
   }
@@ -40,22 +36,11 @@ class GameDetailBlocImpl extends GameDetailBloc {
     required Emitter<GameDetailState> emit,
     required GetGameDetailInput request,
   }) async {
-    try {
-      emit(state.copyWith(isShimmerLoading: true));
-      final output = await _getGameDetailUseCase.execute(request);
-      emit(state.copyWith(
-        gameDetail: output,
-        isShimmerLoading: false,
-      ));
-    } catch(e) {
-      emit(
-        state.copyWith(
-          gameDetail: state.gameDetail.copyWith(
-            isSuccess: false
-          ),
-          isShimmerLoading: false,
-        )
-      );
-    }
+    emit(state.copyWith(isShimmerLoading: true));
+    final output = await _getGameDetailUseCase.execute(request);
+    emit(state.copyWith(
+      gameDetail: output,
+      isShimmerLoading: false,
+    ));
   }
 }

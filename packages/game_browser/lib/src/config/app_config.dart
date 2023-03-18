@@ -13,8 +13,9 @@ class AppConfig extends ApplicationConfig {
   static final AppConfig _instance = AppConfig._();
 
   @override
-  Future<void> config() async {
+  Future<bool> config() async {
     await di.configureInjection();
     di.getIt.registerSingleton<AppRouter>(AppRouter());
+    return Future.value(true);
   }
 }

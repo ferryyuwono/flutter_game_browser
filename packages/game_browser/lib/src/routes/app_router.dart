@@ -4,7 +4,7 @@ import 'package:game_browser/game_browser.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomePage, initial: true),
+    AutoRoute(page: HomePage),
     AutoRoute(page: GameDetailPage),
   ],
 )

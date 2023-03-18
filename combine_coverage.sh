@@ -8,7 +8,8 @@ if grep flutter pubspec.yaml > /dev/null; then
     if [ ! -d "$MELOS_ROOT_PATH/coverage_report" ]; then
       mkdir "$MELOS_ROOT_PATH/coverage_report"
     fi
-    sed "s/^SF:lib/SF:$escapedPath\/lib/g" coverage/lcov.info >> "$MELOS_ROOT_PATH/coverage_report/lcov.info"
+    lcov --remove coverage/lcov.info '*.g.dart' '*.config.dart' '*.gr.dart' -o coverage/new_lcov.info
+    sed "s/^SF:lib/SF:$escapedPath\/lib/g" coverage/new_lcov.info >> "$MELOS_ROOT_PATH/coverage_report/lcov.info"
     rm -rf "coverage"
   fi
 fi

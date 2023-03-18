@@ -1,9 +1,9 @@
 import 'package:async/async.dart';
 
 abstract class Config {
-  final AsyncMemoizer _asyncMemoizer = AsyncMemoizer<void>();
+  final _asyncMemoizer = AsyncMemoizer<bool>();
 
-  Future<void> config();
+  Future<bool> config();
 
-  Future<void> init() => _asyncMemoizer.runOnce(config);
+  Future<bool> init() => _asyncMemoizer.runOnce(config);
 }

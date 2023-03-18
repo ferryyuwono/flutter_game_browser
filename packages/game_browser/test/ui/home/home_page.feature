@@ -1,7 +1,5 @@
 Feature: Home
-    Background:
+    Scenario: Show Game List
         Given Home page is shown
-
-    Scenario: Show Games List
-        When Home page receives game list
+        When Home page receives data
         Then User sees list of game

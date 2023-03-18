@@ -57,6 +57,35 @@ void main() {
       );
       expect(result, expected);
     });
+    test('when execute has exception, should return failed data', () async {
+      // Given
+      const parameter = GetGamesParameter(
+        startDate: '2022-03-16',
+        endDate: '2023-03-16'
+      );
+      const request = GetGamesRequest(
+        parameter: parameter
+      );
+
+      // When
+      when(() => repository.getGames(request: request))
+        .thenThrow(Exception('mock'));
+      final result = await getGamesUseCase.execute(
+        GetGamesInput(
+          page: 1,
+          startDate: DateTime(2022, 3, 16),
+          endDate: DateTime(2023, 3, 16)
+        )
+      );
+
+      // Then
+      const expected = GetGamesOutput(
+        data: [],
+        page: 1,
+        isSuccess: false,
+      );
+      expect(result, expected);
+    });
 
     tearDown(() {});
   });
