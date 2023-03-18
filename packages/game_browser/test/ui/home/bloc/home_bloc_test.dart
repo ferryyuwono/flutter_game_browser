@@ -28,7 +28,7 @@ void main() {
     });
 
     blocTest<HomeBloc, HomeState>(
-      'when input HomeGameInitializedEvent, should return get games result',
+      'when input HomeGetGameEvent, should return get games result',
       setUp: () {
         when(() =>
           getGamesUseCase.execute(

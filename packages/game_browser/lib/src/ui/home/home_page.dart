@@ -171,14 +171,14 @@ class _GameItem extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: _getMetacriticColor(game.metacritic),
+                  color: MetacriticHelper.getMetacriticColor(game.metacritic),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Text(
                     '${game.metacritic}',
                     style: TextStyle(
-                      color: _getMetacriticTextColor(game.metacritic),
+                      color: MetacriticHelper.getMetacriticTextColor(game.metacritic),
                       fontWeight: FontWeight.w600,
                       fontSize: 18
                     ),
@@ -190,30 +190,6 @@ class _GameItem extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Color _getMetacriticColor(int score) {
-    if (score >= 75) {
-      return Colors.green;
-    }
-
-    if (score >= 50) {
-      return Colors.yellow;
-    }
-
-    return Colors.red;
-  }
-
-  Color _getMetacriticTextColor(int score) {
-    if (score >= 75) {
-      return Colors.white;
-    }
-
-    if (score >= 50) {
-      return Colors.black;
-    }
-
-    return Colors.white;
   }
 }
 
@@ -264,7 +240,6 @@ class _LoadingGameItem extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const SizedBox()
           ),
         ],
       ),

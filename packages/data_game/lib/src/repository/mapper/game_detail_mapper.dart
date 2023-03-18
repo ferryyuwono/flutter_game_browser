@@ -15,6 +15,7 @@ class GameDetailMapper {
         DateTime.parse(data.released ?? '') :
         DateTime(0),
       metacritic: data.metacritic ?? 0,
+      reviewsCount: data.reviewsCount ?? 0,
       description: data.description ?? '',
       genres: data.genres?.map((e) => Genre(
         id: e.id ?? 0,

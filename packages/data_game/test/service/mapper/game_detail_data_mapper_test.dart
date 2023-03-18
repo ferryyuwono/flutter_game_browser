@@ -182,6 +182,7 @@ void main() {
         released: "2021-12-16",
         backgroundImage: "https://media.rawg.io/media/games/f5b/f5b0a8232e747c03aa6b56ce2d2af49a.jpg",
         metacritic: 64,
+        reviewsCount: 40,
         description: "Win as One in EA SPORTS™ FIFA 21, powered by Frostbite™. FIFA 21 has more ways to play than ever before - including the UEFA Champions League and CONMEBOL Libertadores. Stay tuned for exciting news to come.",
         genres: [
           GenreData(
