@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain_game/domain_game.dart';
 import 'package:flutter/material.dart';
@@ -117,68 +118,76 @@ class _GameItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 4,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          game.backgroundImage.isNotEmpty ?
-            CachedNetworkImage(
-              imageUrl: game.backgroundImage,
-              width: 150,
-              height: 90,
-              placeholder: (context, url) => Container(
-                width: 150,
-                height: 90,
-                color: Colors.white,
-              ),
-            ) :
-            Container(
-              width: 150,
-              height: 90,
-              color: Colors.white,
-              child: const Center(child: Text("No Image")),
-            ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    game.name,
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),
-                  ),
-                  Text(
-                    'Release Date: ${dateFormat.format(game.released)}',
-                    style: const TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                ],
-              ),
-            ),
+    return Material(
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {
+          context.router.push(GameDetailRoute(gameId: game.id));
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 4,
           ),
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: _getMetacriticColor(game.metacritic),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Center(
-              child: Text(
-                '${game.metacritic}',
-                style: TextStyle(
-                  color: _getMetacriticTextColor(game.metacritic),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              game.backgroundImage.isNotEmpty ?
+                CachedNetworkImage(
+                  imageUrl: game.backgroundImage,
+                  width: 150,
+                  height: 90,
+                  placeholder: (context, url) => Container(
+                    width: 150,
+                    height: 90,
+                    color: Colors.white,
+                  ),
+                ) :
+                Container(
+                  width: 150,
+                  height: 90,
+                  color: Colors.white,
+                  child: const Center(child: Text("No Image")),
+                ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        game.name,
+                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),
+                      ),
+                      Text(
+                        'Release Date: ${dateFormat.format(game.released)}',
+                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: _getMetacriticColor(game.metacritic),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Center(
+                  child: Text(
+                    '${game.metacritic}',
+                    style: TextStyle(
+                      color: _getMetacriticTextColor(game.metacritic),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

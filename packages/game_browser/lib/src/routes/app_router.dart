@@ -5,6 +5,7 @@ import 'package:game_browser/game_browser.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(page: HomePage, initial: true),
+    AutoRoute(page: GameDetailPage),
   ],
 )
 class $AppRouter {}
