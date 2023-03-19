@@ -8,3 +8,4 @@
 **/*.freezed.dart
 **/*.g.dart
 **/*.gr.dart
+/build
