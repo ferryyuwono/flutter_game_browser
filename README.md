@@ -109,6 +109,9 @@ User can see detail of the game (background image, game name, released date, met
 Clean architecture with unit test and widget test allow Author to achieve `100%` code coverage
 
 The html coverage report is also included in this project [here](coverage_report/html/index.html)
+```
+coverage_report/html/index.html
+```
 
 ![](.readme_assets/code_coverage.png)
 
