@@ -10,7 +10,7 @@ command:
 
 scripts:
   run_app:
-    run: melos exec
+    run: melos exec -- flutter run
 
   generate_l10n:
     run: melos exec --dir-exists="lib/src/l10n" -- flutter gen-l10n .
