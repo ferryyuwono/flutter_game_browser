@@ -244,6 +244,9 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/initializer/build" />
       <excludeFolder url="file://$MODULE_DIR$/packages/initializer/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/packages/initializer/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/feature/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/feature/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/feature/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />

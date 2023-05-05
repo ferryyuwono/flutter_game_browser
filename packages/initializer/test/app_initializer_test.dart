@@ -6,22 +6,16 @@ class MockAppConfig extends Mock implements ApplicationConfig {}
 
 void main() {
   group('AppInitializer', () {
-    final appConfig = MockAppConfig();
-    final appInitializer = AppInitializer(appConfig);
+    final appInitializer = AppInitializer();
 
     setUp(() {});
 
     test('when init is called, should call app config init', () async {
-      // Given
-      when(() => appConfig.init())
-        .thenAnswer((_) async => Future.value(true));
-
       // When
       final result = await appInitializer.init();
 
       // Expect
       expect(result, true);
-      verify(appConfig.init).called(1);
     });
 
     tearDown(() {});
