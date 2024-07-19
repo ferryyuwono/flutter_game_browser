@@ -130,7 +130,7 @@ packages:
     source: hosted
     version: "0.12.14"
   melos:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: melos
       sha256: cd8e7db0250ee822c5354a8214afc751b6c1c41aadfbbef927456d509d953244
@@ -290,4 +290,4 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=2.19.2 <3.0.0"
+  dart: ">=2.19.2 <4.0.0"

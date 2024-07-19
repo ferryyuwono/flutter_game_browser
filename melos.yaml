@@ -1,5 +1,5 @@
 name: flutter_games_browser
-sdkPath: .fvm/flutter_sdk
+#sdkPath: .fvm/flutter_sdk
 
 packages:
   - packages/**
@@ -17,7 +17,7 @@ scripts:
     description: Generate localizations in all packages
 
   generate_runner:
-    run: melos exec -- flutter packages pub run build_runner build --delete-conflicting-outputs
+    run: dart run melos exec -- dart run build_runner build --delete-conflicting-outputs
     description: run build_runner-based generators
 
   generate:
